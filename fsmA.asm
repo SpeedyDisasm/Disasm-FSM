@@ -15,6 +15,7 @@
 	
 	.data
 	include prefix_state_table.dat ;opcodeState
+	include prefix_signal_table.dat;opcodeSignal
 	include state_table.dat ;prefixState
 	include modRM_and_immediate_table.dat ;AvailabilityModrmImm
 	include modRM_state_table.dat ;modrmState
@@ -64,23 +65,22 @@ disasm endp
 getInstruction proc 
 ;prefix
 		mov edx, 0
+		mov ebx, 15 ;начальное состояние: 15
 		jmp start
 	prefixStart:
 		mov al, [esi]
 		add esi, 1
 	start:
-		mov ebx, edx
-		mov dx, prefixState[eax*2+edx]
+		mov dx, prefixSignal[eax*2+ebx]
+		mov bx, prefixState[eax*2+ebx]
 		test edx, edx ;compare state and 0
-		jnz prefixStart
-		test ebx, ebx
-		jz prefixQuit
-		sub ebx, 6144 ;при изменении принципа построения таблицы префиксов не забыть проверять это значение
+		jz prefixStart
+		cmp edx, 10 ;check mandatory prefix state
 		ja prefixQuit
 		sub esi, 1
 		mov al, [esi]
 	prefixQuit:
-	push ebx ;save prefix state
+	mov ecx, edx ;save prefix state
 
 ;opcode
 		mov ebx, 0

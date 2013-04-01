@@ -11,8 +11,8 @@ my $maxstate = 0;
 push my @stateTable, [&getClearState];
 push my @signalTable, [&getClearState];
 my @tailTable;
-my @prefixStateOperand = (1, 2, 3, 4, 6, 7, 10, 11, 13, 16); #состояния КА префиксов, если в префиксах был operand size префикс
-my @prefixStateAddress = (2, 4, 7, 8, 11, 12, 13, 15); #состояния КА префиксов, если в префиксах был address size префикс
+my @prefixStateOperand = (1, 2, 3, 4, 8, 6, 10, 12, 14); #состояния КА префиксов, если в префиксах был operand size префикс
+my @prefixStateAddress = (2, 5, 9, 11, 12, 6, 10); #состояния КА префиксов, если в префиксах был address size префикс
 
 my $count = 0;
 while (<$in>) {
