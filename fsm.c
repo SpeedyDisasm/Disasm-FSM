@@ -96,7 +96,7 @@ void getInstruction(INSTRUCTION *instr) {
 	UINT8 b;
 	
 	//getch();
-	getPrefix(instr);
+	//getPrefix(instr);
 	//printf("instr\n");
 	/*
 	while (next != 0) {
