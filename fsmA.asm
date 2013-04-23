@@ -53,9 +53,9 @@ public disasm
 		mov edx, ebx
 	pop ecx;это если надо будет распечатывать результат
 	mov eax, ebx
-	push eax
-		call printInstruction
-	pop eax
+	;push eax
+	;	call printInstruction
+	;pop eax
 	pop ebp
 	ret
 disasm endp

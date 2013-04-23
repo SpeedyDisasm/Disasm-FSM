@@ -16,7 +16,7 @@ typedef unsigned __int64 ticks;
 #define CURRENT_BYTE (*((PUINT8) g_va))  
 
 #define COUNT 1000
-#define TRYCOUNT 1
+#define TRYCOUNT 100
 #define COND 37
 #define BYTE 256
 #define STARTLINE 16
@@ -60,16 +60,21 @@ void main(int argc, PSTR argv[])
 	UINT resInstr[TRYCOUNT];
 	unsigned __int64 tickCount;
 	INSTRUCTION instr[COUNT];
+	INT i;
 	
-	
-	initializeFSM();
-	_asm{
-		lea eax, conditionTable
-		mov ct, eax
-		lfence
-		}
-	tickCount = disasm(g_va, ct, COUNT);	
-	printf("Time: %d \n",tickCount/COUNT);
+	for(i = 0; i < TRYCOUNT; ++i) {
+		initializeFSM();
+		_asm{
+			lea eax, conditionTable
+			mov ct, eax
+			lfence
+			}
+			
+		resInstr[i] = disasm(g_va, ct, COUNT);	
+	}	
+	for(i = 0; i < TRYCOUNT; ++i) {
+		printf("Time: %d \n", resInstr[i]/COUNT);
+	}
 	/*
 	for(ii = 0; ii < TRYCOUNT; ++ii) {
 		initializeFSM(va);
