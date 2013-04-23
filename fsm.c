@@ -15,8 +15,8 @@ typedef unsigned __int64 ticks;
   
 #define CURRENT_BYTE (*((PUINT8) g_va))  
 
-#define COUNT 100000
-#define COND 87408
+#define COUNT 100
+#define COND 26039
 #define BYTE 256
 #define STARTLINE 16
 #define PREFIXCOUNT 11
@@ -72,15 +72,21 @@ INT getInstruction() {
 	INT state = 0;
 	INT next = -1;
 	int i = 0;
-	UINT8 b = getByte();
+	UINT8 b = CURRENT_BYTE;// = getByte();
 	
 	while (next != 0) {
 		if(0 <= next) {
 			state = next;
-			}
-		b = getByte();
+		}
+		if(next != -1)			
+			b = getByte();
 		next = jumpTable[state][b];
+		printf("%i %x\n", next, b);
 	}
+	if(state == 0)
+		getByte();
+	printf("next\n");
+	//printf("%u %x\n",state, b);
 	//printf("%u\n",i);
 	return state;
 }
@@ -107,7 +113,7 @@ VOID main(INT argc, PSTR argv[])
 						  image.FileHeader->OptionalHeader.BaseOfCode, NULL);
 	initializeTable();
 	printf("let's rock\n");
-	for(ii = 0; ii < COUNT; ++ii) {
+	for(ii = 0; ii < 1; ++ii) {
 		initializeFSM(va);
 		_asm{
 			lfence
@@ -120,6 +126,6 @@ VOID main(INT argc, PSTR argv[])
 		tickCount = (getticks() - tickCount);
 		resInstr[ii] = tickCount;
 	}
-	for(ii = 0; ii < COUNT; ++ii) 
+	for(ii = 0; ii < 1; ++ii) 
 		printf("%d \n", resInstr[ii]/COUNT);
 }
