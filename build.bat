@@ -1,7 +1,2 @@
-@echo off
-for %%A in (ml.exe,link.exe, cl.exe) do if "%%~$path:A"=="" call vspath
-ml /nologo /c /coff fsmA.asm
-cl /nologo /c fsm.c
-link /nologo /subsystem:console fsm.obj  fsmA.obj
+cl /nologo fsm.c /link /nologo
 del fsm.obj
-del fsmA.obj
