@@ -17,7 +17,7 @@ typedef unsigned __int64 ticks;
 
 #define COUNT 1000
 #define TRYCOUNT 100
-#define COND 37
+#define COND 2443
 #define BYTE 256
 #define STARTLINE 16
 #define PREFIXCOUNT 11
@@ -44,7 +44,7 @@ void initializeFSM() {
 	LOADED_IMAGE image;
 	PSTR imageFilename;
 	//imageFilename = argv[1];
-	imageFilename = "test_prefix.exe";
+	imageFilename = "test_prefix2443.exe";
 	
 	if (!MapAndLoad(imageFilename, NULL, &image, FALSE, TRUE)) {
 		PRINT_ERROR("MapAndLoad", __FILE__, __LINE__);

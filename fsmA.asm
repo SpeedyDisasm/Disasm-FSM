@@ -36,6 +36,7 @@ public disasm
 		push edx
 			qwer:
 				push ecx
+					lodsb
 					call getInstruction
 				pop ecx
 				push edi
@@ -77,7 +78,7 @@ printInstruction endp
 ;адрес таблицы переходов для опкодов - в esi
 getInstruction proc
 	push ebx
-		call getPrefix
+		;call getPrefix
 	pop ecx
 	mov ebx, 0
 	instructionStart:
