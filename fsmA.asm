@@ -73,47 +73,19 @@ getInstruction proc
 	start:
 		mov dx, prefixSignal[eax*2+ebx]
 		mov bx, prefixState[eax*2+ebx]
-		test edx, edx ;compare state and 0
-		jz prefixStart
-		cmp edx, 10 ;check mandatory prefix state
-		ja prefixQuit
-		sub esi, 1
-		mov al, [esi]
-	prefixQuit:
-	mov ecx, edx ;save prefix state
+		cmp edx, 16 ;сигнал равный 16 не может существовать
+		jb prefixStart
+		mov ebx, edx
 
 ;opcode
-		mov ebx, 0
-		opcodeStart:
-				mov edx, ebx ;keep current state 
-				;сохраняем текущее состояние
-				;умножаем на ширину таблицы
-				shl edx, 9 ;9 - if size of the cell of state table is 2 byte
-				;получаем смещение, по которому хранится следующее состояние
-				mov bx, opcodeState[eax*2 + edx] ;take the next state
-				;получаем следующее состояние
-				test ebx, ebx ;compare state and 0
-				;сравниваем его с 0
-				jz exit
-			mov al, [esi]
-			add esi, 1
-				jmp opcodeStart
-		exit:
-	pop ebx ;load prefix state
-	
-;modRM
-	;здесь ошибка: добавляю я не просто состояние префиксов, а смещение. А использую, так, будто добавляю состояние
-	;в текущем тесте это неважно, префиксов тут нет, но как только заработает то что есть - надо поправить
-	add ebx, edx
-	mov edx, 0
-	mov ecx, 0
-	mov dx, AvailabilityModrmImm[ebx]
-	mov cl, modrmState[edx + eax]
-	add esi, ecx
-imm:
-	mov dx, AvailabilityModrmImm[ebx + PREFIXSTATE]
-	add esi, edx
-	mov al, [esi]
+	opcodeStart:
+		mov al, [esi]
+		add esi, 1
+		mov dx, opcodeSignal[eax*2+ebx]
+		mov bx, opcodeState[eax*2+ebx]
+		test edx, 16
+		jb opcodeStart
+		add esi, edx
 endOfWork:
 	ret
 getInstruction endp
