@@ -2,7 +2,7 @@
 #use warnings;
 #use diagnostics;
 use constant DEFAULT_SIGNAL => 16;
-use constant WORD => 256;
+use constant BYTE => 256;
 
 #push my @state, [&getClearState];
 #push my @signal, [&getClearState];
@@ -69,235 +69,235 @@ for(0..0xff*95) {
 						0x08..0x0b, 0x1c..0x1e);
 	#15 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 15)] = 0;
-		$signal[0x9a + (WORD * 15)] = 6;
-		$state[0xea + (WORD * 15)] = 0;
-		$signal[0xea + (WORD * 15)] = 6;
-		$state[0xc8 + (WORD * 15)] = 0;
-		$signal[0xc8 + (WORD * 15)] = 3;
-		$state[0xc2 + (WORD * 15)] = 0;
-		$signal[0xc2 + (WORD * 15)] = 2;
-		$state[0xca + (WORD * 15)] = 0;
-		$signal[0xca + (WORD * 15)] = 2;
+		$state[0x9a + (BYTE * 15)] = 0;
+		$signal[0x9a + (BYTE * 15)] = 6;
+		$state[0xea + (BYTE * 15)] = 0;
+		$signal[0xea + (BYTE * 15)] = 6;
+		$state[0xc8 + (BYTE * 15)] = 0;
+		$signal[0xc8 + (BYTE * 15)] = 3;
+		$state[0xc2 + (BYTE * 15)] = 0;
+		$signal[0xc2 + (BYTE * 15)] = 2;
+		$state[0xca + (BYTE * 15)] = 0;
+		$signal[0xca + (BYTE * 15)] = 2;
 		foreach(@a4) {
-			$state[$_ + (WORD * 15)] = 0;
-			$signal[$_ + (WORD * 15)] = 0;
+			$state[$_ + (BYTE * 15)] = 0;
+			$signal[$_ + (BYTE * 15)] = 0;
 		}
 		foreach(@a3) {
-			$state[$_ + (WORD * 15)] = 0;
-			$signal[$_ + (WORD * 15)] = 4;
+			$state[$_ + (BYTE * 15)] = 0;
+			$signal[$_ + (BYTE * 15)] = 4;
 		}
 		foreach(@a2) {
-			$state[$_ + (WORD * 15)] = 0;
-			$signal[$_ + (WORD * 15)] = 1;
+			$state[$_ + (BYTE * 15)] = 0;
+			$signal[$_ + (BYTE * 15)] = 1;
 		}
 		foreach(@a1) {
-			$state[$_ + (WORD * 15)] = 16;
-			$signal[$_ + (WORD * 15)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 15)] = 512 * 16;
+			$signal[$_ + (BYTE * 15)] = DEFAULT_SIGNAL;
 		}
 		foreach(@a5) {
-			$state[$_ + (WORD * 15)] = 17;
-			$signal[$_ + (WORD * 15)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 15)] =512 * 17;
+			$signal[$_ + (BYTE * 15)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 15)] = 18;
-		$signal[0xc7 + (WORD * 15)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 15)] = 18;
-		$signal[0x81 + (WORD * 15)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 15)] = 18;
-		$signal[0x69 + (WORD * 15)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 15)] = 19;
-		$signal[0xf0 + (WORD * 15)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 15)] =512 * 18;
+		$signal[0xc7 + (BYTE * 15)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 15)] =512 * 18;
+		$signal[0x81 + (BYTE * 15)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 15)] =512 * 18;
+		$signal[0x69 + (BYTE * 15)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 15)] =512 * 19;
+		$signal[0xf0 + (BYTE * 15)] = DEFAULT_SIGNAL;
 	}
 	
 	#16 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 16)] = 0;
+			$state[$_ + (BYTE * 16)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 16)] = 0;
+			$signal[$_+ (BYTE * 16)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 16)] = 1;
+			$signal[$_+ (BYTE * 16)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 16)] = 2;
+			$signal[$_+ (BYTE * 16)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 16)] = 4;
+			$signal[$_+ (BYTE * 16)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 16)] = 5;
+			$signal[$_+ (BYTE * 16)] = 5;
 		}
 	}
 	
 	#17 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 17)] = 0;
+			$state[$_+ (BYTE * 17)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 17)] = 1;
+			$signal[$_+ (BYTE * 17)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 17)] = 2;
+			$signal[$_+ (BYTE * 17)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 17)] = 3;
+			$signal[$_+ (BYTE * 17)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 17)] = 5;
+			$signal[$_+ (BYTE * 17)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 17)] = 6;
+			$signal[$_+ (BYTE * 17)] = 6;
 		}
 	}
 	
 	#18 состояние modRM + 4
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 18)] = 0;
+			$state[$_+ (BYTE * 18)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 18)] = 4;
+			$signal[$_+ (BYTE * 18)] = 4;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 18)] = 5;
+			$signal[$_+ (BYTE * 18)] = 5;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 18)] = 6;
+			$signal[$_+ (BYTE * 18)] = 6;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 18)] = 8;
+			$signal[$_+ (BYTE * 18)] = 8;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 18)] = 9;
+			$signal[$_+ (BYTE * 18)] = 9;
 		}
 	}
 	
 	#19 состояние 2х-байтные опкоды
 	{
 		for(0x80..0x8f) {
-			$state[$_ + (WORD * 19)] = 0;
-			$signal[$_ + (WORD * 19)] = 4;
+			$state[$_ + (BYTE * 19)] = 0;
+			$signal[$_ + (BYTE * 19)] = 4;
 		}
 		foreach(@aa2) {
-			$state[$_ + (WORD * 19)] = 0;
-			$signal[$_ + (WORD * 19)] = 0;
+			$state[$_ + (BYTE * 19)] = 0;
+			$signal[$_ + (BYTE * 19)] = 0;
 		}
 		foreach(@aa1) {
-			$state[$_ + (WORD * 19)] = 20;
-			$signal[$_ + (WORD * 19)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 19)] = 512 * 20;
+			$signal[$_ + (BYTE * 19)] = DEFAULT_SIGNAL;
 		}
 		foreach(@aa3) {
-			$state[$_ + (WORD * 19)] = 21;
-			$signal[$_ + (WORD * 19)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 19)] =512 *  21;
+			$signal[$_ + (BYTE * 19)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 19)] = 22;
-		$signal[0x38 + (WORD * 19)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 19)] = 23;
-		$signal[0x3a + (WORD * 19)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 19)] =512 *  22;
+		$signal[0x38 + (BYTE * 19)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 19)] =512 *  23;
+		$signal[0x3a + (BYTE * 19)] = DEFAULT_SIGNAL;
 	}
 	
 	#20 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 20)] = 0;
+			$state[$_ + (BYTE * 20)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 20)] = 0;
+			$signal[$_+ (BYTE * 20)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 20)] = 1;
+			$signal[$_+ (BYTE * 20)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 20)] = 2;
+			$signal[$_+ (BYTE * 20)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 20)] = 4;
+			$signal[$_+ (BYTE * 20)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 20)] = 5;
+			$signal[$_+ (BYTE * 20)] = 5;
 		}
 	}
 	
 	#21 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 21)] = 0;
+			$state[$_+ (BYTE * 21)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 21)] = 1;
+			$signal[$_+ (BYTE * 21)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 21)] = 2;
+			$signal[$_+ (BYTE * 21)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 21)] = 3;
+			$signal[$_+ (BYTE * 21)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 21)] = 5;
+			$signal[$_+ (BYTE * 21)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 21)] = 6;
+			$signal[$_+ (BYTE * 21)] = 6;
 		}
 	}
 	
 	#22 состояние 3х-байтные опкоды 38
 	{
 		foreach(@aaa1) {
-			$state[$_ + (WORD * 22)] = 24;
-			$signal[$_ + (WORD * 22)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 22)] = 512 * 24;
+			$signal[$_ + (BYTE * 22)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#23 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 23)] = 25;
-		$signal[0x0f + (WORD * 23)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 23)] = 512 * 25;
+		$signal[0x0f + (BYTE * 23)] = DEFAULT_SIGNAL;
 	}
 	
 	#24 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 24)] = 0;
+			$state[$_ + (BYTE * 24)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 24)] = 0;
+			$signal[$_+ (BYTE * 24)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 24)] = 1;
+			$signal[$_+ (BYTE * 24)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 24)] = 2;
+			$signal[$_+ (BYTE * 24)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 24)] = 4;
+			$signal[$_+ (BYTE * 24)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 24)] = 5;
+			$signal[$_+ (BYTE * 24)] = 5;
 		}
 	}
 	
 	#25 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 25)] = 0;
+			$state[$_+ (BYTE * 25)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 25)] = 1;
+			$signal[$_+ (BYTE * 25)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 25)] = 2;
+			$signal[$_+ (BYTE * 25)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 25)] = 3;
+			$signal[$_+ (BYTE * 25)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 25)] = 5;
+			$signal[$_+ (BYTE * 25)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 25)] = 6;
+			$signal[$_+ (BYTE * 25)] = 6;
 		}
 	}
 }
@@ -328,231 +328,231 @@ for(0..0xff*95) {
 						0x08..0x0b, 0x1c..0x1e);
 	#14 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 14)] = 0;
-		$signal[0x9a + (WORD * 14)] = 4;
-		$state[0xea + (WORD * 14)] = 0;
-		$signal[0xea + (WORD * 14)] = 4;
-		$state[0xc8 + (WORD * 14)] = 0;
-		$signal[0xc8 + (WORD * 14)] = 3;
+		$state[0x9a + (BYTE * 14)] = 0;
+		$signal[0x9a + (BYTE * 14)] = 4;
+		$state[0xea + (BYTE * 14)] = 0;
+		$signal[0xea + (BYTE * 14)] = 4;
+		$state[0xc8 + (BYTE * 14)] = 0;
+		$signal[0xc8 + (BYTE * 14)] = 3;
 		foreach(@b4) {
-			$state[$_ + (WORD * 14)] = 0;
-			$signal[$_ + (WORD * 14)] = 0;
+			$state[$_ + (BYTE * 14)] = 0;
+			$signal[$_ + (BYTE * 14)] = 0;
 		}
 		foreach(@b3) {
-			$state[$_ + (WORD * 14)] = 0;
-			$signal[$_ + (WORD * 14)] = 2;
+			$state[$_ + (BYTE * 14)] = 0;
+			$signal[$_ + (BYTE * 14)] = 2;
 		}
 		foreach(@b2) {
-			$state[$_ + (WORD * 14)] = 0;
-			$signal[$_ + (WORD * 14)] = 1;
+			$state[$_ + (BYTE * 14)] = 0;
+			$signal[$_ + (BYTE * 14)] = 1;
 		}
 		foreach(@b1) {
-			$state[$_ + (WORD * 14)] = 26;
-			$signal[$_ + (WORD * 14)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 14)] = 512 * 26;
+			$signal[$_ + (BYTE * 14)] = DEFAULT_SIGNAL;
 		}
 		foreach(@b5) {
-			$state[$_ + (WORD * 14)] = 27;
-			$signal[$_ + (WORD * 14)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 14)] = 512 * 27;
+			$signal[$_ + (BYTE * 14)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 14)] = 28;
-		$signal[0xc7 + (WORD * 14)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 14)] = 28;
-		$signal[0x81 + (WORD * 14)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 14)] = 28;
-		$signal[0x69 + (WORD * 14)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 14)] = 29;
-		$signal[0xf0 + (WORD * 14)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 14)] = 512 * 28;
+		$signal[0xc7 + (BYTE * 14)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 14)] = 512 * 28;
+		$signal[0x81 + (BYTE * 14)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 14)] = 512 * 28;
+		$signal[0x69 + (BYTE * 14)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 14)] = 512 * 29;
+		$signal[0xf0 + (BYTE * 14)] = DEFAULT_SIGNAL;
 	}
 	
 	#26 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 26)] = 0;
+			$state[$_ + (BYTE * 26)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 26)] = 0;
+			$signal[$_+ (BYTE * 26)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 26)] = 1;
+			$signal[$_+ (BYTE * 26)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 26)] = 2;
+			$signal[$_+ (BYTE * 26)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 26)] = 4;
+			$signal[$_+ (BYTE * 26)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 26)] = 5;
+			$signal[$_+ (BYTE * 26)] = 5;
 		}
 	}
 	
 	#27 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 27)] = 0;
+			$state[$_+ (BYTE * 27)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 27)] = 1;
+			$signal[$_+ (BYTE * 27)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 27)] = 2;
+			$signal[$_+ (BYTE * 27)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 27)] = 3;
+			$signal[$_+ (BYTE * 27)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 27)] = 5;
+			$signal[$_+ (BYTE * 27)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 27)] = 6;
+			$signal[$_+ (BYTE * 27)] = 6;
 		}
 	}
 	
 	#28 состояние modRM + 2
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 28)] = 0;
+			$state[$_+ (BYTE * 28)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 28)] = 2;
+			$signal[$_+ (BYTE * 28)] = 2;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 28)] = 3;
+			$signal[$_+ (BYTE * 28)] = 3;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 28)] = 4;
+			$signal[$_+ (BYTE * 28)] = 4;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 28)] = 5;
+			$signal[$_+ (BYTE * 28)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 28)] = 7;
+			$signal[$_+ (BYTE * 28)] = 7;
 		}
 	}
 	
 	#29 состояние 2х-байтные опкоды
 	{
 		for(0x80..0x8f) {
-			$state[$_ + (WORD * 29)] = 0;
-			$signal[$_ + (WORD * 29)] = 2;
+			$state[$_ + (BYTE * 29)] = 0;
+			$signal[$_ + (BYTE * 29)] = 2;
 		}
 		foreach(@bb2) {
-			$state[$_ + (WORD * 29)] = 0;
-			$signal[$_ + (WORD * 29)] = 0;
+			$state[$_ + (BYTE * 29)] = 0;
+			$signal[$_ + (BYTE * 29)] = 0;
 		}
 		foreach(@bb1) {
-			$state[$_ + (WORD * 29)] = 30;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 30;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
 		foreach(@bb3) {
-			$state[$_ + (WORD * 29)] = 31;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 31;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 29)] = 32;
-		$signal[0x38 + (WORD * 29)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 29)] = 33;
-		$signal[0x3a + (WORD * 29)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 29)] = 512 * 32;
+		$signal[0x38 + (BYTE * 29)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 29)] = 512 * 33;
+		$signal[0x3a + (BYTE * 29)] = DEFAULT_SIGNAL;
 	}
 	
 	#30 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 30)] = 0;
+			$state[$_ + (BYTE * 30)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 30)] = 0;
+			$signal[$_+ (BYTE * 30)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 30)] = 1;
+			$signal[$_+ (BYTE * 30)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 30)] = 2;
+			$signal[$_+ (BYTE * 30)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 30)] = 4;
+			$signal[$_+ (BYTE * 30)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 30)] = 5;
+			$signal[$_+ (BYTE * 30)] = 5;
 		}
 	}
 	
 	#31 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 31)] = 0;
+			$state[$_+ (BYTE * 31)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 31)] = 1;
+			$signal[$_+ (BYTE * 31)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 31)] = 2;
+			$signal[$_+ (BYTE * 31)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 31)] = 3;
+			$signal[$_+ (BYTE * 31)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 31)] = 5;
+			$signal[$_+ (BYTE * 31)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 31)] = 6;
+			$signal[$_+ (BYTE * 31)] = 6;
 		}
 	}
 	
 	#32 состояние 3х-байтные опкоды 38
 	{
 		foreach(@bbb1) {
-			$state[$_ + (WORD * 32)] = 34;
-			$signal[$_ + (WORD * 32)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 32)] = 512 * 34;
+			$signal[$_ + (BYTE * 32)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#33 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 33)] = 35;
-		$signal[0x0f + (WORD * 33)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 33)] = 512 * 35;
+		$signal[0x0f + (BYTE * 33)] = DEFAULT_SIGNAL;
 	}
 	
 	#34 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 34)] = 0;
+			$state[$_ + (BYTE * 34)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 34)] = 0;
+			$signal[$_+ (BYTE * 34)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 34)] = 1;
+			$signal[$_+ (BYTE * 34)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 34)] = 2;
+			$signal[$_+ (BYTE * 34)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 34)] = 4;
+			$signal[$_+ (BYTE * 34)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 34)] = 5;
+			$signal[$_+ (BYTE * 34)] = 5;
 		}
 	}
 	
 	#35 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 35)] = 0;
+			$state[$_+ (BYTE * 35)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 35)] = 1;
+			$signal[$_+ (BYTE * 35)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 35)] = 2;
+			$signal[$_+ (BYTE * 35)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 35)] = 3;
+			$signal[$_+ (BYTE * 35)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 35)] = 5;
+			$signal[$_+ (BYTE * 35)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 35)] = 6;
+			$signal[$_+ (BYTE * 35)] = 6;
 		}
 	}
 	
@@ -584,193 +584,193 @@ for(0..0xff*95) {
 						0x08..0x0b, 0x1c..0x1e);
 	#11 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 11)] = 0;
-		$signal[0x9a + (WORD * 11)] = 6;
-		$state[0xea + (WORD * 11)] = 0;
-		$signal[0xea + (WORD * 11)] = 6;
-		$state[0xc8 + (WORD * 11)] = 0;
-		$signal[0xc8 + (WORD * 11)] = 3;
-		$state[0xc2 + (WORD * 11)] = 0;
-		$signal[0xc2 + (WORD * 11)] = 2;
-		$state[0xca + (WORD * 11)] = 0;
-		$signal[0xca + (WORD * 11)] = 2;
+		$state[0x9a + (BYTE * 11)] = 0;
+		$signal[0x9a + (BYTE * 11)] = 6;
+		$state[0xea + (BYTE * 11)] = 0;
+		$signal[0xea + (BYTE * 11)] = 6;
+		$state[0xc8 + (BYTE * 11)] = 0;
+		$signal[0xc8 + (BYTE * 11)] = 3;
+		$state[0xc2 + (BYTE * 11)] = 0;
+		$signal[0xc2 + (BYTE * 11)] = 2;
+		$state[0xca + (BYTE * 11)] = 0;
+		$signal[0xca + (BYTE * 11)] = 2;
 		foreach(@c4) {
-			$state[$_ + (WORD * 11)] = 0;
-			$signal[$_ + (WORD * 11)] = 0;
+			$state[$_ + (BYTE * 11)] = 0;
+			$signal[$_ + (BYTE * 11)] = 0;
 		}
 		foreach(@c3) {
-			$state[$_ + (WORD * 11)] = 0;
-			$signal[$_ + (WORD * 11)] = 4;
+			$state[$_ + (BYTE * 11)] = 0;
+			$signal[$_ + (BYTE * 11)] = 4;
 		}
 		foreach(@c2) {
-			$state[$_ + (WORD * 11)] = 0;
-			$signal[$_ + (WORD * 11)] = 1;
+			$state[$_ + (BYTE * 11)] = 0;
+			$signal[$_ + (BYTE * 11)] = 1;
 		}
 		foreach(@c1) {
-			$state[$_ + (WORD * 11)] = 36;
-			$signal[$_ + (WORD * 11)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 11)] = 512 * 36;
+			$signal[$_ + (BYTE * 11)] = DEFAULT_SIGNAL;
 		}
 		foreach(@c5) {
-			$state[$_ + (WORD * 11)] = 37;
-			$signal[$_ + (WORD * 11)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 11)] = 512 * 37;
+			$signal[$_ + (BYTE * 11)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 11)] = 38;
-		$signal[0xc7 + (WORD * 11)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 11)] = 38;
-		$signal[0x81 + (WORD * 11)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 11)] = 38;
-		$signal[0x69 + (WORD * 11)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 11)] = 39;
-		$signal[0xf0 + (WORD * 11)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 11)] = 512 * 38;
+		$signal[0xc7 + (BYTE * 11)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 11)] = 512 * 38;
+		$signal[0x81 + (BYTE * 11)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 11)] = 512 * 38;
+		$signal[0x69 + (BYTE * 11)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 11)] = 512 * 39;
+		$signal[0xf0 + (BYTE * 11)] = DEFAULT_SIGNAL;
 	}
 	
 	#36 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 36)] = 0;
+			$state[$_ + (BYTE * 36)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 36)] = 0;
+			$signal[$_+ (BYTE * 36)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 36)] = 1;
+			$signal[$_+ (BYTE * 36)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 36)] = 2;
+			$signal[$_+ (BYTE * 36)] = 2;
 		}
 	}
 	
 	#37 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 37)] = 0;
+			$state[$_+ (BYTE * 37)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 37)] = 1;
+			$signal[$_+ (BYTE * 37)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 37)] = 2;
+			$signal[$_+ (BYTE * 37)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 37)] = 3;
+			$signal[$_+ (BYTE * 37)] = 3;
 		}
 	}
 	
 	#38 состояние modRM + 4
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 38)] = 0;
+			$state[$_+ (BYTE * 38)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 38)] = 4;
+			$signal[$_+ (BYTE * 38)] = 4;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 38)] = 5;
+			$signal[$_+ (BYTE * 38)] = 5;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 38)] = 6;
+			$signal[$_+ (BYTE * 38)] = 6;
 		}
 	}
 	
 	#39 состояние 2х-байтные опкоды
 	{
 		for(0x80..0x8f) {
-			$state[$_ + (WORD * 39)] = 0;
-			$signal[$_ + (WORD * 39)] = 4;
+			$state[$_ + (BYTE * 39)] = 0;
+			$signal[$_ + (BYTE * 39)] = 4;
 		}
 		foreach(@cc2) {
-			$state[$_ + (WORD * 39)] = 0;
-			$signal[$_ + (WORD * 39)] = 0;
+			$state[$_ + (BYTE * 39)] = 0;
+			$signal[$_ + (BYTE * 39)] = 0;
 		}
 		foreach(@cc1) {
-			$state[$_ + (WORD * 39)] = 40;
-			$signal[$_ + (WORD * 39)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 39)] = 512 * 40;
+			$signal[$_ + (BYTE * 39)] = DEFAULT_SIGNAL;
 		}
 		foreach(@cc3) {
-			$state[$_ + (WORD * 39)] = 41;
-			$signal[$_ + (WORD * 39)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 39)] = 512 * 41;
+			$signal[$_ + (BYTE * 39)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 39)] = 42;
-		$signal[0x38 + (WORD * 39)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 39)] = 43;
-		$signal[0x3a + (WORD * 39)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 39)] = 512 * 42;
+		$signal[0x38 + (BYTE * 39)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 39)] = 512 * 43;
+		$signal[0x3a + (BYTE * 39)] = DEFAULT_SIGNAL;
 	}
 	
 	#40 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 40)] = 0;
+			$state[$_ + (BYTE * 40)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 40)] = 0;
+			$signal[$_+ (BYTE * 40)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 40)] = 1;
+			$signal[$_+ (BYTE * 40)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 40)] = 2;
+			$signal[$_+ (BYTE * 40)] = 2;
 		}
 	}
 	
 	#41 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 41)] = 0;
+			$state[$_+ (BYTE * 41)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 41)] = 1;
+			$signal[$_+ (BYTE * 41)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 41)] = 2;
+			$signal[$_+ (BYTE * 41)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 41)] = 3;
+			$signal[$_+ (BYTE * 41)] = 3;
 		}
 	}
 	
 	#42 состояние 3х-байтные опкоды 38
 	{
 		foreach(@ccc1) {
-			$state[$_ + (WORD * 42)] = 44;
-			$signal[$_ + (WORD * 42)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 42)] = 512 * 44;
+			$signal[$_ + (BYTE * 42)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#43 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 43)] = 45;
-		$signal[0x0f + (WORD * 43)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 43)] =512 *  45;
+		$signal[0x0f + (BYTE * 43)] = DEFAULT_SIGNAL;
 	}
 	
 	#44 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 44)] = 0;
+			$state[$_ + (BYTE * 44)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 44)] = 0;
+			$signal[$_+ (BYTE * 44)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 44)] = 1;
+			$signal[$_+ (BYTE * 44)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 44)] = 2;
+			$signal[$_+ (BYTE * 44)] = 2;
 		}
 	}
 	
 	#45 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 45)] = 0;
+			$state[$_+ (BYTE * 45)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 45)] = 1;
+			$signal[$_+ (BYTE * 45)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 45)] = 2;
+			$signal[$_+ (BYTE * 45)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 45)] = 3;
+			$signal[$_+ (BYTE * 45)] = 3;
 		}
 	}
 }
@@ -801,189 +801,189 @@ for(0..0xff*95) {
 						0x08..0x0b, 0x1c..0x1e);
 	#12 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 12)] = 0;
-		$signal[0x9a + (WORD * 12)] = 4;
-		$state[0xea + (WORD * 12)] = 0;
-		$signal[0xea + (WORD * 12)] = 4;
-		$state[0xc8 + (WORD * 12)] = 0;
-		$signal[0xc8 + (WORD * 12)] = 3;
+		$state[0x9a + (BYTE * 12)] = 0;
+		$signal[0x9a + (BYTE * 12)] = 4;
+		$state[0xea + (BYTE * 12)] = 0;
+		$signal[0xea + (BYTE * 12)] = 4;
+		$state[0xc8 + (BYTE * 12)] = 0;
+		$signal[0xc8 + (BYTE * 12)] = 3;
 		foreach(@d4) {
-			$state[$_ + (WORD * 12)] = 0;
-			$signal[$_ + (WORD * 12)] = 0;
+			$state[$_ + (BYTE * 12)] = 0;
+			$signal[$_ + (BYTE * 12)] = 0;
 		}
 		foreach(@d3) {
-			$state[$_ + (WORD * 12)] = 0;
-			$signal[$_ + (WORD * 12)] = 2;
+			$state[$_ + (BYTE * 12)] = 0;
+			$signal[$_ + (BYTE * 12)] = 2;
 		}
 		foreach(@d2) {
-			$state[$_ + (WORD * 12)] = 0;
-			$signal[$_ + (WORD * 12)] = 1;
+			$state[$_ + (BYTE * 12)] = 0;
+			$signal[$_ + (BYTE * 12)] = 1;
 		}
 		foreach(@d1) {
-			$state[$_ + (WORD * 12)] = 46;
-			$signal[$_ + (WORD * 12)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 12)] = 512 * 46;
+			$signal[$_ + (BYTE * 12)] = DEFAULT_SIGNAL;
 		}
 		foreach(@d5) {
-			$state[$_ + (WORD * 12)] = 47;
-			$signal[$_ + (WORD * 12)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 12)] = 512 * 47;
+			$signal[$_ + (BYTE * 12)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 12)] = 48;
-		$signal[0xc7 + (WORD * 12)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 12)] = 48;
-		$signal[0x81 + (WORD * 12)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 12)] = 48;
-		$signal[0x69 + (WORD * 12)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 12)] = 49;
-		$signal[0xf0 + (WORD * 12)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 12)] = 512 * 48;
+		$signal[0xc7 + (BYTE * 12)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 12)] = 512 * 48;
+		$signal[0x81 + (BYTE * 12)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 12)] = 512 * 48;
+		$signal[0x69 + (BYTE * 12)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 12)] = 512 * 49;
+		$signal[0xf0 + (BYTE * 12)] = DEFAULT_SIGNAL;
 	}
 	
 	#46 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 46)] = 0;
+			$state[$_ + (BYTE * 46)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 46)] = 0;
+			$signal[$_+ (BYTE * 46)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 46)] = 1;
+			$signal[$_+ (BYTE * 46)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 46)] = 2;
+			$signal[$_+ (BYTE * 46)] = 2;
 		}
 	}
 	
 	#47 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 47)] = 0;
+			$state[$_+ (BYTE * 47)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 47)] = 1;
+			$signal[$_+ (BYTE * 47)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 47)] = 2;
+			$signal[$_+ (BYTE * 47)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 47)] = 3;
+			$signal[$_+ (BYTE * 47)] = 3;
 		}
 	}
 	
 	#48 состояние modRM + 2
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 48)] = 0;
+			$state[$_+ (BYTE * 48)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 48)] = 2;
+			$signal[$_+ (BYTE * 48)] = 2;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 48)] = 3;
+			$signal[$_+ (BYTE * 48)] = 3;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 48)] = 4;
+			$signal[$_+ (BYTE * 48)] = 4;
 		}
 	}
 	
 	#49 состояние 2х-байтные опкоды
 	{
 		for(0x80..0x8f) {
-			$state[$_ + (WORD * 49)] = 0;
-			$signal[$_ + (WORD * 49)] = 2;
+			$state[$_ + (BYTE * 49)] = 0;
+			$signal[$_ + (BYTE * 49)] = 2;
 		}
 		foreach(@dd2) {
-			$state[$_ + (WORD * 29)] = 0;
-			$signal[$_ + (WORD * 29)] = 0;
+			$state[$_ + (BYTE * 29)] = 0;
+			$signal[$_ + (BYTE * 29)] = 0;
 		}
 		foreach(@dd1) {
-			$state[$_ + (WORD * 29)] = 50;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 50;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
 		foreach(@dd3) {
-			$state[$_ + (WORD * 29)] = 51;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 51;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 29)] = 52;
-		$signal[0x38 + (WORD * 29)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 29)] = 53;
-		$signal[0x3a + (WORD * 29)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 29)] = 512 * 52;
+		$signal[0x38 + (BYTE * 29)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 29)] = 512 * 53;
+		$signal[0x3a + (BYTE * 29)] = DEFAULT_SIGNAL;
 	}
 	
 	#50 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 50)] = 0;
+			$state[$_ + (BYTE * 50)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 50)] = 0;
+			$signal[$_+ (BYTE * 50)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 50)] = 1;
+			$signal[$_+ (BYTE * 50)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 50)] = 2;
+			$signal[$_+ (BYTE * 50)] = 2;
 		}
 	}
 	
 	#51 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 51)] = 0;
+			$state[$_+ (BYTE * 51)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 51)] = 1;
+			$signal[$_+ (BYTE * 51)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 51)] = 2;
+			$signal[$_+ (BYTE * 51)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 51)] = 3;
+			$signal[$_+ (BYTE * 51)] = 3;
 		}
 	}
 	
 	#52 состояние 3х-байтные опкоды 38
 	{
 		foreach(@ddd1) {
-			$state[$_ + (WORD * 52)] = 54;
-			$signal[$_ + (WORD * 52)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 52)] = 512 * 54;
+			$signal[$_ + (BYTE * 52)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#53 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 53)] = 55;
-		$signal[0x0f + (WORD * 53)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 53)] =512 *  55;
+		$signal[0x0f + (BYTE * 53)] = DEFAULT_SIGNAL;
 	}
 	
 	#54 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 54)] = 0;
+			$state[$_ + (BYTE * 54)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 54)] = 0;
+			$signal[$_+ (BYTE * 54)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 54)] = 1;
+			$signal[$_+ (BYTE * 54)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 54)] = 2;
+			$signal[$_+ (BYTE * 54)] = 2;
 		}
 	}
 	
 	#55 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 55)] = 0;
+			$state[$_+ (BYTE * 55)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 55)] = 1;
+			$signal[$_+ (BYTE * 55)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 55)] = 2;
+			$signal[$_+ (BYTE * 55)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 55)] = 3;
+			$signal[$_+ (BYTE * 55)] = 3;
 		}
 	}
 	
@@ -1006,227 +1006,227 @@ for(0..0xff*95) {
 	my @eee1 = (0xf0, 0xf1);
 	#3 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 3)] = 0;
-		$signal[0x9a + (WORD * 3)] = 6;
-		$state[0xea + (WORD * 3)] = 0;
-		$signal[0xea + (WORD * 3)] = 6;
-		$state[0xc8 + (WORD * 3)] = 0;
-		$signal[0xc8 + (WORD * 3)] = 3;
-		$state[0xc2 + (WORD * 3)] = 0;
-		$signal[0xc2 + (WORD * 3)] = 2;
-		$state[0xca + (WORD * 3)] = 0;
-		$signal[0xca + (WORD * 3)] = 2;
+		$state[0x9a + (BYTE * 3)] = 0;
+		$signal[0x9a + (BYTE * 3)] = 6;
+		$state[0xea + (BYTE * 3)] = 0;
+		$signal[0xea + (BYTE * 3)] = 6;
+		$state[0xc8 + (BYTE * 3)] = 0;
+		$signal[0xc8 + (BYTE * 3)] = 3;
+		$state[0xc2 + (BYTE * 3)] = 0;
+		$signal[0xc2 + (BYTE * 3)] = 2;
+		$state[0xca + (BYTE * 3)] = 0;
+		$signal[0xca + (BYTE * 3)] = 2;
 		foreach(@e4) {
-			$state[$_ + (WORD * 3)] = 0;
-			$signal[$_ + (WORD * 3)] = 0;
+			$state[$_ + (BYTE * 3)] = 0;
+			$signal[$_ + (BYTE * 3)] = 0;
 		}
 		foreach(@e3) {
-			$state[$_ + (WORD * 3)] = 0;
-			$signal[$_ + (WORD * 3)] = 4;
+			$state[$_ + (BYTE * 3)] = 0;
+			$signal[$_ + (BYTE * 3)] = 4;
 		}
 		foreach(@e2) {
-			$state[$_ + (WORD * 3)] = 0;
-			$signal[$_ + (WORD * 3)] = 1;
+			$state[$_ + (BYTE * 3)] = 0;
+			$signal[$_ + (BYTE * 3)] = 1;
 		}
 		foreach(@e1) {
-			$state[$_ + (WORD * 3)] = 56;
-			$signal[$_ + (WORD * 3)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 3)] =512 *  56;
+			$signal[$_ + (BYTE * 3)] = DEFAULT_SIGNAL;
 		}
 		foreach(@e5) {
-			$state[$_ + (WORD * 3)] = 57;
-			$signal[$_ + (WORD * 3)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 3)] = 512 * 57;
+			$signal[$_ + (BYTE * 3)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 3)] = 58;
-		$signal[0xc7 + (WORD * 3)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 3)] = 58;
-		$signal[0x81 + (WORD * 3)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 3)] = 58;
-		$signal[0x69 + (WORD * 3)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 3)] = 59;
-		$signal[0xf0 + (WORD * 3)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 3)] = 512 * 58;
+		$signal[0xc7 + (BYTE * 3)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 3)] = 512 * 58;
+		$signal[0x81 + (BYTE * 3)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 3)] = 512 * 58;
+		$signal[0x69 + (BYTE * 3)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 3)] = 512 * 59;
+		$signal[0xf0 + (BYTE * 3)] = DEFAULT_SIGNAL;
 	}
 	
 	#56 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 56)] = 0;
+			$state[$_ + (BYTE * 56)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 56)] = 0;
+			$signal[$_+ (BYTE * 56)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 56)] = 1;
+			$signal[$_+ (BYTE * 56)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 56)] = 2;
+			$signal[$_+ (BYTE * 56)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 56)] = 4;
+			$signal[$_+ (BYTE * 56)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 56)] = 5;
+			$signal[$_+ (BYTE * 56)] = 5;
 		}
 	}
 	
 	#57 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 57)] = 0;
+			$state[$_+ (BYTE * 57)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 57)] = 1;
+			$signal[$_+ (BYTE * 57)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 57)] = 2;
+			$signal[$_+ (BYTE * 57)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 57)] = 3;
+			$signal[$_+ (BYTE * 57)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 57)] = 5;
+			$signal[$_+ (BYTE * 57)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 57)] = 6;
+			$signal[$_+ (BYTE * 57)] = 6;
 		}
 	}
 	
 	#58 состояние modRM + 4
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 58)] = 0;
+			$state[$_+ (BYTE * 58)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 58)] = 4;
+			$signal[$_+ (BYTE * 58)] = 4;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 58)] = 5;
+			$signal[$_+ (BYTE * 58)] = 5;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 58)] = 6;
+			$signal[$_+ (BYTE * 58)] = 6;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 58)] = 8;
+			$signal[$_+ (BYTE * 58)] = 8;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 58)] = 9;
+			$signal[$_+ (BYTE * 58)] = 9;
 		}
 	}
 	
 	#59 состояние 2х-байтные опкоды
 	{
 		foreach(@ee1) {
-			$state[$_ + (WORD * 59)] = 60;
-			$signal[$_ + (WORD * 59)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 59)] = 512 * 60;
+			$signal[$_ + (BYTE * 59)] = DEFAULT_SIGNAL;
 		}
 		foreach(@ee2) {
-			$state[$_ + (WORD * 59)] = 61;
-			$signal[$_ + (WORD * 59)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 59)] = 512 * 61;
+			$signal[$_ + (BYTE * 59)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 59)] = 62;
-		$signal[0x38 + (WORD * 59)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 59)] = 63;
-		$signal[0x3a + (WORD * 59)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 59)] = 512 * 2;
+		$signal[0x38 + (BYTE * 59)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 59)] = 512 * 63;
+		$signal[0x3a + (BYTE * 59)] = DEFAULT_SIGNAL;
 	}
 	
 	#60 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 60)] = 0;
+			$state[$_ + (BYTE * 60)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 60)] = 0;
+			$signal[$_+ (BYTE * 60)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 60)] = 1;
+			$signal[$_+ (BYTE * 60)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 60)] = 2;
+			$signal[$_+ (BYTE * 60)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 60)] = 4;
+			$signal[$_+ (BYTE * 60)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 60)] = 5;
+			$signal[$_+ (BYTE * 60)] = 5;
 		}
 	}
 	
 	#61 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 61)] = 0;
+			$state[$_+ (BYTE * 61)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 61)] = 1;
+			$signal[$_+ (BYTE * 61)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 61)] = 2;
+			$signal[$_+ (BYTE * 61)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 61)] = 3;
+			$signal[$_+ (BYTE * 61)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 61)] = 5;
+			$signal[$_+ (BYTE * 61)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 61)] = 6;
+			$signal[$_+ (BYTE * 61)] = 6;
 		}
 	}
 	
 	#62 состояние 3х-байтные опкоды 38
 	{
 		foreach(@eee1) {
-			$state[$_ + (WORD * 62)] = 64;
-			$signal[$_ + (WORD * 22)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 62)] = 512 * 64;
+			$signal[$_ + (BYTE * 22)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#63 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 63)] = 65;
-		$signal[0x0f + (WORD * 63)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 63)] = 512 * 65;
+		$signal[0x0f + (BYTE * 63)] = DEFAULT_SIGNAL;
 	}
 	
 	#64 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 64)] = 0;
+			$state[$_ + (BYTE * 64)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 64)] = 0;
+			$signal[$_+ (BYTE * 64)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 64)] = 1;
+			$signal[$_+ (BYTE * 64)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 64)] = 2;
+			$signal[$_+ (BYTE * 64)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 64)] = 4;
+			$signal[$_+ (BYTE * 64)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 64)] = 5;
+			$signal[$_+ (BYTE * 64)] = 5;
 		}
 	}
 	
 	#65 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 65)] = 0;
+			$state[$_+ (BYTE * 65)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 65)] = 1;
+			$signal[$_+ (BYTE * 65)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 65)] = 2;
+			$signal[$_+ (BYTE * 65)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 65)] = 3;
+			$signal[$_+ (BYTE * 65)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 65)] = 5;
+			$signal[$_+ (BYTE * 65)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 65)] = 6;
+			$signal[$_+ (BYTE * 65)] = 6;
 		}
 	}
 }
@@ -1249,185 +1249,185 @@ for(0..0xff*95) {
 	my @fff1 = (0xf0, 0xf1);
 	#5 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 5)] = 0;
-		$signal[0x9a + (WORD * 5)] = 6;
-		$state[0xea + (WORD * 5)] = 0;
-		$signal[0xea + (WORD * 5)] = 6;
-		$state[0xc8 + (WORD * 5)] = 0;
-		$signal[0xc8 + (WORD * 5)] = 3;
-		$state[0xc2 + (WORD * 5)] = 0;
-		$signal[0xc2 + (WORD * 5)] = 2;
-		$state[0xca + (WORD * 5)] = 0;
-		$signal[0xca + (WORD * 5)] = 2;
+		$state[0x9a + (BYTE * 5)] = 0;
+		$signal[0x9a + (BYTE * 5)] = 6;
+		$state[0xea + (BYTE * 5)] = 0;
+		$signal[0xea + (BYTE * 5)] = 6;
+		$state[0xc8 + (BYTE * 5)] = 0;
+		$signal[0xc8 + (BYTE * 5)] = 3;
+		$state[0xc2 + (BYTE * 5)] = 0;
+		$signal[0xc2 + (BYTE * 5)] = 2;
+		$state[0xca + (BYTE * 5)] = 0;
+		$signal[0xca + (BYTE * 5)] = 2;
 		foreach(@f4) {
-			$state[$_ + (WORD * 5)] = 0;
-			$signal[$_ + (WORD * 5)] = 0;
+			$state[$_ + (BYTE * 5)] = 0;
+			$signal[$_ + (BYTE * 5)] = 0;
 		}
 		foreach(@f3) {
-			$state[$_ + (WORD * 5)] = 0;
-			$signal[$_ + (WORD * 5)] = 4;
+			$state[$_ + (BYTE * 5)] = 0;
+			$signal[$_ + (BYTE * 5)] = 4;
 		}
 		foreach(@f2) {
-			$state[$_ + (WORD * 5)] = 0;
-			$signal[$_ + (WORD * 5)] = 1;
+			$state[$_ + (BYTE * 5)] = 0;
+			$signal[$_ + (BYTE * 5)] = 1;
 		}
 		foreach(@f1) {
-			$state[$_ + (WORD * 5)] = 66;
-			$signal[$_ + (WORD * 5)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 5)] = 512 * 66;
+			$signal[$_ + (BYTE * 5)] = DEFAULT_SIGNAL;
 		}
 		foreach(@f5) {
-			$state[$_ + (WORD * 5)] = 67;
-			$signal[$_ + (WORD * 5)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 5)] = 512 * 67;
+			$signal[$_ + (BYTE * 5)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 5)] = 68;
-		$signal[0xc7 + (WORD * 5)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 5)] = 68;
-		$signal[0x81 + (WORD * 5)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 5)] = 68;
-		$signal[0x69 + (WORD * 5)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 5)] = 69;
-		$signal[0xf0 + (WORD * 5)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 5)] = 512 * 68;
+		$signal[0xc7 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 5)] =512 *  68;
+		$signal[0x81 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 5)] = 512 * 68;
+		$signal[0x69 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 5)] = 512 * 69;
+		$signal[0xf0 + (BYTE * 5)] = DEFAULT_SIGNAL;
 	}
 	
 	#66 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 66)] = 0;
+			$state[$_ + (BYTE * 66)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 66)] = 0;
+			$signal[$_+ (BYTE * 66)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 66)] = 1;
+			$signal[$_+ (BYTE * 66)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 66)] = 2;
+			$signal[$_+ (BYTE * 66)] = 2;
 		}
 	}
 	
 	#67 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 67)] = 0;
+			$state[$_+ (BYTE * 67)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 67)] = 1;
+			$signal[$_+ (BYTE * 67)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 67)] = 2;
+			$signal[$_+ (BYTE * 67)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 67)] = 3;
+			$signal[$_+ (BYTE * 67)] = 3;
 		}
 	}
 	
 	#68 состояние modRM + 4
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 68)] = 0;
+			$state[$_+ (BYTE * 68)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 68)] = 4;
+			$signal[$_+ (BYTE * 68)] = 4;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 68)] = 5;
+			$signal[$_+ (BYTE * 68)] = 5;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 68)] = 6;
+			$signal[$_+ (BYTE * 68)] = 6;
 		}
 	}
 	
 	#69 состояние 2х-байтные опкоды
 	{
 		foreach(@ff1) {
-			$state[$_ + (WORD * 69)] = 70;
-			$signal[$_ + (WORD * 69)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 69)] = 512 * 70;
+			$signal[$_ + (BYTE * 69)] = DEFAULT_SIGNAL;
 		}
 		foreach(@ff2) {
-			$state[$_ + (WORD * 69)] = 71;
-			$signal[$_ + (WORD * 69)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 69)] = 512 * 71;
+			$signal[$_ + (BYTE * 69)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 69)] = 72;
-		$signal[0x38 + (WORD * 69)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 69)] = 73;
-		$signal[0x3a + (WORD * 69)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 69)] = 512 * 72;
+		$signal[0x38 + (BYTE * 69)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 69)] = 512 * 73;
+		$signal[0x3a + (BYTE * 69)] = DEFAULT_SIGNAL;
 	}
 	
 	#70 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 70)] = 0;
+			$state[$_ + (BYTE * 70)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 70)] = 0;
+			$signal[$_+ (BYTE * 70)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 70)] = 1;
+			$signal[$_+ (BYTE * 70)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 70)] = 2;
+			$signal[$_+ (BYTE * 70)] = 2;
 		}
 	}
 	
 	#71 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 71)] = 0;
+			$state[$_+ (BYTE * 71)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 71)] = 1;
+			$signal[$_+ (BYTE * 71)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 71)] = 2;
+			$signal[$_+ (BYTE * 71)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 71)] = 3;
+			$signal[$_+ (BYTE * 71)] = 3;
 		}
 	}
 	
 	#72 состояние 3х-байтные опкоды 38
 	{
 		foreach(@fff1) {
-			$state[$_ + (WORD * 72)] = 74;
-			$signal[$_ + (WORD * 72)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 72)] = 512 * 74;
+			$signal[$_ + (BYTE * 72)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#73 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 73)] = 75;
-		$signal[0x0f + (WORD * 73)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 73)] = 512 * 75;
+		$signal[0x0f + (BYTE * 73)] = DEFAULT_SIGNAL;
 	}
 	
 	#74 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 74)] = 0;
+			$state[$_ + (BYTE * 74)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 74)] = 0;
+			$signal[$_+ (BYTE * 74)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 74)] = 1;
+			$signal[$_+ (BYTE * 74)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 74)] = 2;
+			$signal[$_+ (BYTE * 74)] = 2;
 		}
 	}
 	
 	#75 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 75)] = 0;
+			$state[$_+ (BYTE * 75)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 75)] = 1;
+			$signal[$_+ (BYTE * 75)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 75)] = 2;
+			$signal[$_+ (BYTE * 75)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 75)] = 3;
+			$signal[$_+ (BYTE * 75)] = 3;
 		}
 	}
 }
@@ -1450,223 +1450,223 @@ for(0..0xff*95) {
 	my @ggg1 = (0xf0, 0xf1);
 	#4 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 4)] = 0;
-		$signal[0x9a + (WORD * 4)] = 4;
-		$state[0xea + (WORD * 4)] = 0;
-		$signal[0xea + (WORD * 4)] = 4;
-		$state[0xc8 + (WORD * 4)] = 0;
-		$signal[0xc8 + (WORD * 4)] = 3;
+		$state[0x9a + (BYTE * 4)] = 0;
+		$signal[0x9a + (BYTE * 4)] = 4;
+		$state[0xea + (BYTE * 4)] = 0;
+		$signal[0xea + (BYTE * 4)] = 4;
+		$state[0xc8 + (BYTE * 4)] = 0;
+		$signal[0xc8 + (BYTE * 4)] = 3;
 		foreach(@g4) {
-			$state[$_ + (WORD * 4)] = 0;
-			$signal[$_ + (WORD * 4)] = 0;
+			$state[$_ + (BYTE * 4)] = 0;
+			$signal[$_ + (BYTE * 4)] = 0;
 		}
 		foreach(@g3) {
-			$state[$_ + (WORD * 4)] = 0;
-			$signal[$_ + (WORD * 4)] = 2;
+			$state[$_ + (BYTE * 4)] = 0;
+			$signal[$_ + (BYTE * 4)] = 2;
 		}
 		foreach(@g2) {
-			$state[$_ + (WORD * 4)] = 0;
-			$signal[$_ + (WORD * 4)] = 1;
+			$state[$_ + (BYTE * 4)] = 0;
+			$signal[$_ + (BYTE * 4)] = 1;
 		}
 		foreach(@g1) {
-			$state[$_ + (WORD * 4)] = 76;
-			$signal[$_ + (WORD * 4)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 4)] = 512 * 76;
+			$signal[$_ + (BYTE * 4)] = DEFAULT_SIGNAL;
 		}
 		foreach(@g5) {
-			$state[$_ + (WORD * 4)] = 77;
-			$signal[$_ + (WORD * 4)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 4)] = 512 * 77;
+			$signal[$_ + (BYTE * 4)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 4)] = 78;
-		$signal[0xc7 + (WORD * 4)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 4)] = 78;
-		$signal[0x81 + (WORD * 4)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 4)] = 78;
-		$signal[0x69 + (WORD * 4)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 4)] = 79;
-		$signal[0xf0 + (WORD * 4)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 4)] = 512 * 78;
+		$signal[0xc7 + (BYTE * 4)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 4)] = 512 * 78;
+		$signal[0x81 + (BYTE * 4)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 4)] = 512 * 78;
+		$signal[0x69 + (BYTE * 4)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 4)] = 512 * 79;
+		$signal[0xf0 + (BYTE * 4)] = DEFAULT_SIGNAL;
 	}
 	
 	#76 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 76)] = 0;
+			$state[$_ + (BYTE * 76)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 76)] = 0;
+			$signal[$_+ (BYTE * 76)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 76)] = 1;
+			$signal[$_+ (BYTE * 76)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 76)] = 2;
+			$signal[$_+ (BYTE * 76)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 76)] = 4;
+			$signal[$_+ (BYTE * 76)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 76)] = 5;
+			$signal[$_+ (BYTE * 76)] = 5;
 		}
 	}
 	
 	#77 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 77)] = 0;
+			$state[$_+ (BYTE * 77)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 77)] = 1;
+			$signal[$_+ (BYTE * 77)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 77)] = 2;
+			$signal[$_+ (BYTE * 77)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 77)] = 3;
+			$signal[$_+ (BYTE * 77)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 77)] = 5;
+			$signal[$_+ (BYTE * 77)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 77)] = 6;
+			$signal[$_+ (BYTE * 77)] = 6;
 		}
 	}
 	
 	#78 состояние modRM + 2
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 78)] = 0;
+			$state[$_+ (BYTE * 78)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 78)] = 2;
+			$signal[$_+ (BYTE * 78)] = 2;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 78)] = 3;
+			$signal[$_+ (BYTE * 78)] = 3;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 78)] = 4;
+			$signal[$_+ (BYTE * 78)] = 4;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 78)] = 5;
+			$signal[$_+ (BYTE * 78)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 78)] = 7;
+			$signal[$_+ (BYTE * 78)] = 7;
 		}
 	}
 	
 	#79 состояние 2х-байтные опкоды
 	{
 		foreach(@gg1) {
-			$state[$_ + (WORD * 79)] = 80;
-			$signal[$_ + (WORD * 79)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 79)] = 512 * 80;
+			$signal[$_ + (BYTE * 79)] = DEFAULT_SIGNAL;
 		}
 		foreach(@gg2) {
-			$state[$_ + (WORD * 79)] = 81;
-			$signal[$_ + (WORD * 79)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 79)] = 512 * 81;
+			$signal[$_ + (BYTE * 79)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 79)] = 82;
-		$signal[0x38 + (WORD * 79)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 79)] = 83;
-		$signal[0x3a + (WORD * 79)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 79)] = 512 * 82;
+		$signal[0x38 + (BYTE * 79)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 79)] = 512 * 83;
+		$signal[0x3a + (BYTE * 79)] = DEFAULT_SIGNAL;
 	}
 	
 	#80 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 80)] = 0;
+			$state[$_ + (BYTE * 80)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 80)] = 0;
+			$signal[$_+ (BYTE * 80)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 80)] = 1;
+			$signal[$_+ (BYTE * 80)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 80)] = 2;
+			$signal[$_+ (BYTE * 80)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 80)] = 4;
+			$signal[$_+ (BYTE * 80)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 80)] = 5;
+			$signal[$_+ (BYTE * 80)] = 5;
 		}
 	}
 	
 	#81 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 81)] = 0;
+			$state[$_+ (BYTE * 81)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 81)] = 1;
+			$signal[$_+ (BYTE * 81)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 81)] = 2;
+			$signal[$_+ (BYTE * 81)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 81)] = 3;
+			$signal[$_+ (BYTE * 81)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 81)] = 5;
+			$signal[$_+ (BYTE * 81)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 81)] = 6;
+			$signal[$_+ (BYTE * 81)] = 6;
 		}
 	}
 	
 	#82 состояние 3х-байтные опкоды 38
 	{
 		foreach(@ggg1) {
-			$state[$_ + (WORD * 82)] = 84;
-			$signal[$_ + (WORD * 82)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 82)] = 512 * 84;
+			$signal[$_ + (BYTE * 82)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#83 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 83)] = 85;
-		$signal[0x0f + (WORD * 83)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 83)] = 512 * 85;
+		$signal[0x0f + (BYTE * 83)] = DEFAULT_SIGNAL;
 	}
 	
 	#84 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 84)] = 0;
+			$state[$_ + (BYTE * 84)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 84)] = 0;
+			$signal[$_+ (BYTE * 84)] = 0;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 84)] = 1;
+			$signal[$_+ (BYTE * 84)] = 1;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 84)] = 2;
+			$signal[$_+ (BYTE * 84)] = 2;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 84)] = 4;
+			$signal[$_+ (BYTE * 84)] = 4;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 84)] = 5;
+			$signal[$_+ (BYTE * 84)] = 5;
 		}
 	}
 	
 	#85 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 85)] = 0;
+			$state[$_+ (BYTE * 85)] = 0;
 		}
 		foreach(@modrm_0) {
-			$signal[$_+ (WORD * 85)] = 1;
+			$signal[$_+ (BYTE * 85)] = 1;
 		}
 		foreach(@modrm_1) {
-			$signal[$_+ (WORD * 85)] = 2;
+			$signal[$_+ (BYTE * 85)] = 2;
 		}
 		foreach(@modrm_2) {
-			$signal[$_+ (WORD * 85)] = 3;
+			$signal[$_+ (BYTE * 85)] = 3;
 		}
 		foreach(@modrm_4) {
-			$signal[$_+ (WORD * 85)] = 5;
+			$signal[$_+ (BYTE * 85)] = 5;
 		}
 		foreach(@modrm_5) {
-			$signal[$_+ (WORD * 85)] = 6;
+			$signal[$_+ (BYTE * 85)] = 6;
 		}
 	}
 	
@@ -1690,181 +1690,181 @@ for(0..0xff*95) {
 	my @hhh1 = (0xf0, 0xf1);
 	#6 состояние 1-байтные опкоды
 	{
-		$state[0x9a + (WORD * 6)] = 0;
-		$signal[0x9a + (WORD * 6)] = 4;
-		$state[0xea + (WORD * 6)] = 0;
-		$signal[0xea + (WORD * 6)] = 4;
-		$state[0xc8 + (WORD * 6)] = 0;
-		$signal[0xc8 + (WORD * 6)] = 3;
+		$state[0x9a + (BYTE * 6)] = 0;
+		$signal[0x9a + (BYTE * 6)] = 4;
+		$state[0xea + (BYTE * 6)] = 0;
+		$signal[0xea + (BYTE * 6)] = 4;
+		$state[0xc8 + (BYTE * 6)] = 0;
+		$signal[0xc8 + (BYTE * 6)] = 3;
 		foreach(@h4) {
-			$state[$_ + (WORD * 6)] = 0;
-			$signal[$_ + (WORD * 6)] = 0;
+			$state[$_ + (BYTE * 6)] = 0;
+			$signal[$_ + (BYTE * 6)] = 0;
 		}
 		foreach(@h3) {
-			$state[$_ + (WORD * 6)] = 0;
-			$signal[$_ + (WORD * 6)] = 2;
+			$state[$_ + (BYTE * 6)] = 0;
+			$signal[$_ + (BYTE * 6)] = 2;
 		}
 		foreach(@h2) {
-			$state[$_ + (WORD * 6)] = 0;
-			$signal[$_ + (WORD * 6)] = 1;
+			$state[$_ + (BYTE * 6)] = 0;
+			$signal[$_ + (BYTE * 6)] = 1;
 		}
 		foreach(@h1) {
-			$state[$_ + (WORD * 6)] = 86;
-			$signal[$_ + (WORD * 6)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 6)] =512 *  86;
+			$signal[$_ + (BYTE * 6)] = DEFAULT_SIGNAL;
 		}
 		foreach(@h5) {
-			$state[$_ + (WORD * 6)] = 87;
-			$signal[$_ + (WORD * 6)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 6)] = 512 * 87;
+			$signal[$_ + (BYTE * 6)] = DEFAULT_SIGNAL;
 		}
-		$state[0xc7 + (WORD * 6)] = 88;
-		$signal[0xc7 + (WORD * 6)] = DEFAULT_SIGNAL;
-		$state[0x81 + (WORD * 6)] = 88;
-		$signal[0x81 + (WORD * 6)] = DEFAULT_SIGNAL;
-		$state[0x69 + (WORD * 6)] = 88;
-		$signal[0x69 + (WORD * 6)] = DEFAULT_SIGNAL;
-		$state[0xf0 + (WORD * 6)] = 89;
-		$signal[0xf0 + (WORD * 6)] = DEFAULT_SIGNAL;
+		$state[0xc7 + (BYTE * 6)] =512 *  88;
+		$signal[0xc7 + (BYTE * 6)] = DEFAULT_SIGNAL;
+		$state[0x81 + (BYTE * 6)] =512 *  88;
+		$signal[0x81 + (BYTE * 6)] = DEFAULT_SIGNAL;
+		$state[0x69 + (BYTE * 6)] =512 *  88;
+		$signal[0x69 + (BYTE * 6)] = DEFAULT_SIGNAL;
+		$state[0xf0 + (BYTE * 6)] =512 *  89;
+		$signal[0xf0 + (BYTE * 6)] = DEFAULT_SIGNAL;
 	}
 	
 	#86 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 86)] = 0;
+			$state[$_ + (BYTE * 86)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 86)] = 0;
+			$signal[$_+ (BYTE * 86)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 86)] = 1;
+			$signal[$_+ (BYTE * 86)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 86)] = 2;
+			$signal[$_+ (BYTE * 86)] = 2;
 		}
 	}
 	
 	#87 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 87)] = 0;
+			$state[$_+ (BYTE * 87)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 87)] = 1;
+			$signal[$_+ (BYTE * 87)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 87)] = 2;
+			$signal[$_+ (BYTE * 87)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 87)] = 3;
+			$signal[$_+ (BYTE * 87)] = 3;
 		}
 	}
 	
 	#88 состояние modRM + 2
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 88)] = 0;
+			$state[$_+ (BYTE * 88)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 88)] = 2;
+			$signal[$_+ (BYTE * 88)] = 2;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 88)] = 3;
+			$signal[$_+ (BYTE * 88)] = 3;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 88)] = 4;
+			$signal[$_+ (BYTE * 88)] = 4;
 		}
 	}
 	
 	#89 состояние 2х-байтные опкоды
 	{
 		foreach(@hh1) {
-			$state[$_ + (WORD * 29)] = 90;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 90;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
 		foreach(@hh2) {
-			$state[$_ + (WORD * 29)] = 91;
-			$signal[$_ + (WORD * 29)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 29)] = 512 * 91;
+			$signal[$_ + (BYTE * 29)] = DEFAULT_SIGNAL;
 		}
-		$state[0x38 + (WORD * 29)] = 92;
-		$signal[0x38 + (WORD * 29)] = DEFAULT_SIGNAL;
-		$state[0x3a + (WORD * 29)] = 93;
-		$signal[0x3a + (WORD * 29)] = DEFAULT_SIGNAL;
+		$state[0x38 + (BYTE * 29)] = 512 * 92;
+		$signal[0x38 + (BYTE * 29)] = DEFAULT_SIGNAL;
+		$state[0x3a + (BYTE * 29)] = 512 * 93;
+		$signal[0x3a + (BYTE * 29)] = DEFAULT_SIGNAL;
 	}
 	
 	#90 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 90)] = 0;
+			$state[$_ + (BYTE * 90)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 90)] = 0;
+			$signal[$_+ (BYTE * 90)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 90)] = 1;
+			$signal[$_+ (BYTE * 90)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 90)] = 2;
+			$signal[$_+ (BYTE * 90)] = 2;
 		}
 	}
 	
 	#91 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 91)] = 0;
+			$state[$_+ (BYTE * 91)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 91)] = 1;
+			$signal[$_+ (BYTE * 91)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 91)] = 2;
+			$signal[$_+ (BYTE * 91)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 91)] = 3;
+			$signal[$_+ (BYTE * 91)] = 3;
 		}
 	}
 	
 	#92 состояние 3х-байтные опкоды 38
 	{
 		foreach(@hhh1) {
-			$state[$_ + (WORD * 92)] = 94;
-			$signal[$_ + (WORD * 92)] = DEFAULT_SIGNAL;
+			$state[$_ + (BYTE * 92)] = 512 * 94;
+			$signal[$_ + (BYTE * 92)] = DEFAULT_SIGNAL;
 		}
 	}
 	
 	#93 состояние 3х-байтные опкоды 3а
 	{
-		$state[0x0f + (WORD * 93)] = 95;
-		$signal[0x0f + (WORD * 93)] = DEFAULT_SIGNAL;
+		$state[0x0f + (BYTE * 93)] = 512 * 95;
+		$signal[0x0f + (BYTE * 93)] = DEFAULT_SIGNAL;
 	}
 	
 	#94 состояние modRM
 	{
 		for(0..0xff) {
-			$state[$_ + (WORD * 94)] = 0;
+			$state[$_ + (BYTE * 94)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 94)] = 0;
+			$signal[$_+ (BYTE * 94)] = 0;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 94)] = 1;
+			$signal[$_+ (BYTE * 94)] = 1;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 94)] = 2;
+			$signal[$_+ (BYTE * 94)] = 2;
 		}
 	}
 	
 	#95 состояние modRM + 1
 	{
 		for(0..0xff) {
-			$state[$_+ (WORD * 95)] = 0;
+			$state[$_+ (BYTE * 95)] = 0;
 		}
 		foreach(@modrm_16_0) {
-			$signal[$_+ (WORD * 95)] = 1;
+			$signal[$_+ (BYTE * 95)] = 1;
 		}
 		foreach(@modrm_16_1) {
-			$signal[$_+ (WORD * 95)] = 2;
+			$signal[$_+ (BYTE * 95)] = 2;
 		}
 		foreach(@modrm_16_2) {
-			$signal[$_+ (WORD * 95)] = 3;
+			$signal[$_+ (BYTE * 95)] = 3;
 		}
 	}
 	
@@ -1880,7 +1880,7 @@ foreach(@state) {
 }
 foreach(@signal) {
 	if($_ > $max) {$max = $_;}
-	print $outputSignal " dw $_ \n";
+	print $outputSignal " db $_ \n";
 }
 
 close $outputState;

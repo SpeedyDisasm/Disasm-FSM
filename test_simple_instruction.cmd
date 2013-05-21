@@ -14,9 +14,9 @@ main proc
 
 commands MACRO
 		rept COUNT
-			db 0B9h, 068h, 000h, 0DCh, 000h ;MOV ECX,fsm.00DC0068
-			db 0A1h, 0DCh, 01Bh, 0DCh, 000h ;MOV EAX,DWORD PTR DS:[DC1BDC]
-			db 0E8h, 0F4h, 025h, 000h, 000h ;CALL fsm.00DA3A4D
+			db 021h, 001h
+			db 000h, 0a8h, 058h, 007h, 000h, 0bdh
+			db 08bh, 0f8h
 			endm
 		endm
 	

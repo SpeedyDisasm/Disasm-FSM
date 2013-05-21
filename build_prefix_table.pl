@@ -4,15 +4,15 @@ use diagnostics;
 
 use constant PREFIXSTATE => 16;
 use constant BYTE => 256;
+use constant DEFAULT_SIGNAL => 16;
 
 open my $outState, ">", "prefix_state_table.dat" or die "wtf";
 open my $outSignal, ">", "prefix_signal_table.dat" or die "wtf";
 my @state = ();
 my @signal = ();
 for(0..PREFIXSTATE * BYTE - 1) {
-	#скорее всего это не нужно и undef итак запишется в файл как 0
 	push @state, 0;
-	push @signal, 0;
+	push @signal, 15;
 }
 #0 состояние останется пустым - так удобнее
 {
@@ -548,7 +548,7 @@ for(0..PREFIXSTATE * BYTE - 1) {
 	}
 	print $outSignal "prefixSignal";
 	foreach(@signal) {
-		print $outSignal " dw "."$_"." \n";
+		print $outSignal " db "."$_"." \n";
 	}
 	close $outState;
 	close $outSignal;

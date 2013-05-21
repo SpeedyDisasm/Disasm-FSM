@@ -1,7 +1,6 @@
 ﻿#include <windows.h>
 #include <intrin.h>
 #include <stdio.h>
-#include "fsm.h"
 #pragma intrinsic(__rdtsc)
 typedef unsigned __int64 ticks;
 #define getticks __rdtsc
@@ -28,19 +27,16 @@ INT _stdcall disasm(PVOID, UINT);
 //global variables
 PVOID g_va;
 PVOID ct;
-// UINT16 conditionTable[COND*BYTE];
-// UINT8 prefixArray[PREFIXCOUNT];
-// UINT16 prefixStateTable[PREFIXSTATE*BYTE];
-// UINT8 modRMAndImmTable[COND*BYTE];
 
 void initializeFSM() {
 	LOADED_IMAGE image;
 	PSTR imageFilename;
 	//imageFilename = argv[1];
-	//imageFilename = "test_short_instruction.exe";
+	imageFilename = "test_short_instruction.exe";
+	//imageFilename = "test_simple_instruction.exe";
 	//imageFilename = "test_prefix.exe";
 	//imageFilename = "prefix_4_opcode_1.exe";
-	imageFilename = "prefix_2_opcode_1_modRM_SIB_imm.exe";
+	//imageFilename = "prefix_2_opcode_1_modRM_SIB_imm.exe";
 	//imageFilename = "opcode_1_modRM_SIB_imm.exe";
 	
 	if (!MapAndLoad(imageFilename, NULL, &image, FALSE, TRUE)) {
@@ -55,12 +51,11 @@ void main(int argc, PSTR argv[])
 {
 	UINT resInstr[TRYCOUNT];
 	unsigned __int64 tickCount;
-	INSTRUCTION instr[COUNT];
 	int i;
 	for(i = 0; i < COUNT; ++i) {
 		initializeFSM();
-		tickCount = disasm(g_va, COUNT*10);	
-		printf("Time: %d \n",tickCount/(COUNT*10));
+		tickCount = disasm(g_va, COUNT*100);	
+		printf("Time: %d \n",tickCount/(COUNT*100));
 	}
 	/*
 	for(ii = 0; ii < TRYCOUNT; ++ii) {

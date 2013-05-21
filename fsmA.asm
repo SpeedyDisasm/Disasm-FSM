@@ -32,11 +32,12 @@ public disasm
 	mov eax, 0
 	pre:
 		mov al, [esi]
-		cmp eax, 69h
+		cmp eax, 0b9h
 	je q
 		add esi, 1
 	jmp pre
 	q:
+
 	lfence
 	rdtsc
 	cld
@@ -72,21 +73,22 @@ getInstruction proc
 		mov al, [esi]
 		add esi, 1
 	start:
-		mov dx, prefixSignal[eax*2+ebx]
+		mov dl, prefixSignal[eax*2+ebx]
 		mov bx, prefixState[eax*2+ebx]
-		cmp edx, 16 ;сигнал равный 16 не может существовать
-		jb prefixStart
+		cmp edx, 16 ;сигнал равный 16 значит что разбор не окончен
+		je prefixStart
 		mov ebx, edx
-
+		shl ebx, 9
 ;opcode
 	opcodeStart:
 		mov al, [esi]
 		add esi, 1
-		mov dx, opcodeSignal[eax*2+ebx]
+		mov dl, opcodeSignal[eax*2+ebx]
 		mov bx, opcodeState[eax*2+ebx]
-		test edx, 16
-		jb opcodeStart
+		cmp edx, 16
+		je opcodeStart
 		add esi, edx
+		mov al, [esi]
 endOfWork:
 	ret
 getInstruction endp
