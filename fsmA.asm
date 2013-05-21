@@ -14,11 +14,12 @@
 	includelib kernel32.lib
 	
 	.data
-	include prefix_state_table.dat ;opcodeState
-	include prefix_signal_table.dat;opcodeSignal
-	include state_table.dat ;prefixState
-	include modRM_and_immediate_table.dat ;AvailabilityModrmImm
-	include modRM_state_table.dat ;modrmState
+	include prefix_state_table.dat ;prefixState
+	include prefix_signal_table.dat;prefixSignal
+	include state_table.dat ;opcodeState
+	include signal_table.dat ;opcodeSignal
+	;include modRM_and_immediate_table.dat ;AvailabilityModrmImm
+	;include modRM_state_table.dat ;modrmState
 	
 public disasm 
 	.code
