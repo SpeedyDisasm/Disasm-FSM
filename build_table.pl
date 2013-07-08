@@ -2076,6 +2076,23 @@ for(0..0xff*MAX_STATE) {
 		$signal[0x69 + (BYTE * 5)] = DEFAULT_SIGNAL;
 		$state[0xf0 + (BYTE * 5)] = 512 * 69;
 		$signal[0xf0 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		#coprocessor
+		$state[0xd8 + (BYTE * 5)] =512 * 188;
+		$signal[0xd8 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xd9 + (BYTE * 5)] =512 * 189;
+		$signal[0xd9 + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xda + (BYTE * 5)] =512 * 190;
+		$signal[0xda + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xdb + (BYTE * 5)] =512 * 191;
+		$signal[0xdb + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xdc + (BYTE * 5)] =512 * 192;
+		$signal[0xdc + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xdd + (BYTE * 5)] =512 * 193;
+		$signal[0xdd + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xde + (BYTE * 5)] =512 * 194;
+		$signal[0xde + (BYTE * 5)] = DEFAULT_SIGNAL;
+		$state[0xdf + (BYTE * 5)] =512 * 195;
+		$signal[0xdf + (BYTE * 5)] = DEFAULT_SIGNAL;
 	}
 	
 	#66 состояние modRM
