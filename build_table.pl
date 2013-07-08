@@ -4553,6 +4553,23 @@ for(0..0xff*MAX_STATE) {
 		$signal[0x69 + (BYTE * 1)] = DEFAULT_SIGNAL;
 		$state[0xf0 + (BYTE * 1)] = 512 * 131;
 		$signal[0xf0 + (BYTE * 1)] = DEFAULT_SIGNAL;
+		#coprocessor
+		$state[0xd8 + (BYTE * 1)] =512 * 236;
+		$signal[0xd8 + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xd9 + (BYTE * 1)] =512 * 237;
+		$signal[0xd9 + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xda + (BYTE * 1)] =512 * 238;
+		$signal[0xda + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xdb + (BYTE * 1)] =512 * 239;
+		$signal[0xdb + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xdc + (BYTE * 1)] =512 * 240;
+		$signal[0xdc + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xdd + (BYTE * 1)] =512 * 241;
+		$signal[0xdd + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xde + (BYTE * 1)] =512 * 242;
+		$signal[0xde + (BYTE * 1)] = DEFAULT_SIGNAL;
+		$state[0xdf + (BYTE * 1)] =512 * 243;
+		$signal[0xdf + (BYTE * 1)] = DEFAULT_SIGNAL;
 	}
 	
 	#128 состояние modRM
@@ -4742,6 +4759,139 @@ for(0..0xff*MAX_STATE) {
 		}
 		foreach(@modrm_5) {
 			$signal[$_+ (BYTE * 137)] = 6;
+		}
+	}
+	
+	#244 состояние d8
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 244)] = 0;
+		}
+		for(0x00..0xbf) {
+			$signal[$_ + (BYTE * 244)] = 4;
+		}
+		for(0xc0..0xff) {
+			$signal[$_ + (BYTE * 244)] = 0;
+		}
+	}
+	
+	#237 состояние d9
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 237)] = 0;
+		}
+		foreach(@d9_1) {
+			$signal[$_ + (BYTE * 237)] = 4;
+		}
+		foreach(@d9_2) {
+			$signal[$_ + (BYTE * 237)] = 2;
+		}
+		foreach(@d9_3) {
+			$signal[$_ + (BYTE * 237)] = 14;
+		}
+		foreach(@d9_4) {
+			$signal[$_ + (BYTE * 237)] = 0;
+		}
+	}
+	
+	#238 состояние da
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 238)] = 0;
+		}
+		for(0x00..0xbf) {
+			$signal[$_ + (BYTE * 238)] = 4;
+		}
+		for(0xc0..0xdf) {
+			$signal[$_ + (BYTE * 238)] = 0;
+		}
+		$signal[0xe1+ (BYTE * 238)] = 0;
+	}
+	
+	#239 состояние db
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 239)] = 0;
+		}
+		foreach(@db_1) {
+			$signal[$_ + (BYTE * 239)] = 4;
+		}
+		foreach(@db_2) {
+			$signal[$_ + (BYTE * 239)] = 10;
+		}
+		foreach(@db_3) {
+			$signal[$_ + (BYTE * 239)] = 0;
+		}
+	}
+	
+	#240 состояние dc
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 240)] = 0;
+		}
+		for(0x00..0xbf) {
+			$signal[$_ + (BYTE * 240)] = 8;
+		}
+		for(0xc0..0xcf) {
+			$signal[$_ + (BYTE * 240)] = 0;
+		}
+		for(0xe0..0xff) {
+			$signal[$_ + (BYTE * 240)] = 0;
+		}
+	}
+	
+	#241 состояние dd
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 241)] = 0;
+		}
+		foreach(@dd_1) {
+			$signal[$_ + (BYTE * 241)] = 8;
+		}
+		foreach(@dd_2) {
+			$signal[$_ + (BYTE * 241)] = 94;
+		}
+		foreach(@dd_3) {
+			$signal[$_ + (BYTE * 241)] = 2;
+		}
+		foreach(@dd_4) {
+			$signal[$_ + (BYTE * 241)] = 0;
+		}
+	}
+	
+	#242 состояние de
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 242)] = 0;
+		}
+		for(0x00..0xbf) {
+			$signal[$_ + (BYTE * 242)] = 2;
+		}
+		for(0xc0..0xcf) {
+			$signal[$_ + (BYTE * 242)] = 0;
+		}
+		for(0xe0..0xff) {
+			$signal[$_ + (BYTE * 242)] = 0;
+		}
+		$signal[0xd9+ (BYTE * 242)] = 0;
+	}
+	
+	#243 состояние df
+	{
+		for(0..0xff) {
+			$state[$_+ (BYTE * 243)] = 0;
+		}
+		foreach(@df_1) {
+			$signal[$_ + (BYTE * 243)] = 2;
+		}
+		foreach(@df_2) {
+			$signal[$_ + (BYTE * 243)] = 8;
+		}
+		foreach(@df_3) {
+			$signal[$_ + (BYTE * 243)] = 10;
+		}
+		foreach(@df_4) {
+			$signal[$_ + (BYTE * 243)] = 0;
 		}
 	}
 	
