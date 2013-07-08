@@ -5257,7 +5257,7 @@ print $outputState "opcodeState";
 print $outputSignal "opcodeSignal";
 #вложенные foreach, мрак и ужас
 foreach(@state) {
-	print $outputState " dw $_ \n";
+	print $outputState " dd $_ \n";
 }
 
 foreach(@signal) {

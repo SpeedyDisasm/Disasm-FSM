@@ -84,7 +84,7 @@ getInstruction proc
 		mov al, [esi]
 		add esi, 1
 		mov dl, opcodeSignal[eax*2+ebx]
-		mov bx, opcodeState[eax*2+ebx]
+		mov ebx, opcodeState[eax*2+ebx]
 		cmp edx, 16
 		je opcodeStart
 		add esi, edx
